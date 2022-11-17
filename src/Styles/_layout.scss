@@ -1,0 +1,224 @@
+.container {
+  width: 120rem;
+  margin: 5.4rem 5.8rem;
+}
+
+.grid {
+  display: grid;
+  grid-template-rows: auto 1rem 1fr 4.8rem;
+}
+
+.header {
+  height: 40rem;
+  padding: 2rem 6rem;
+  // background: var(--color-grey-dark-1);
+  background-image: linear-gradient(
+      to left bottom,
+      rgba(0, 0, 0, 0.6),
+      rgba(0, 0, 0, 0.85)
+    ),
+    url(../Images/netflixroulette_bg.png);
+  background-size: cover;
+  background-position: top;
+
+  &__logo-box {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    margin-bottom: 5.7rem;
+  }
+
+  &__logo {
+    font-size: 2rem;
+    font-style: normal;
+    font-weight: 900;
+    line-height: 2.4rem;
+
+    color: var(--color-primary);
+
+    &--sub {
+      font-weight: 400;
+    }
+  }
+
+  &__search {
+    display: grid;
+    grid-template-rows: 1fr 1fr;
+    row-gap: 3.8rem;
+
+    margin: auto 6rem;
+  }
+}
+
+.movie-details__header {
+  padding: 2rem 6rem;
+  background: var(--color-grey-dark-1);
+
+  &__logo-box {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    margin-bottom: 3rem;
+  }
+
+  &__logo {
+    font-size: 2rem;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 2.4rem;
+
+    color: var(--color-primary);
+  }
+
+  .search-icon {
+    position: relative;
+    width: 2.9rem;
+    text-align: center;
+
+    cursor: pointer;
+
+    &__circle {
+      width: 2.1rem;
+      height: 2.1rem;
+      border: 2px solid var(--color-primary);
+      border-radius: 100px;
+    }
+
+    &__rectangle {
+      position: absolute;
+      right: 2.3rem;
+      width: 1rem;
+      transform: rotate(135deg);
+      border: 1px solid var(--color-primary);
+    }
+  }
+
+  .movie-details {
+    display: grid;
+    grid-template-columns: 30% 1fr;
+    column-gap: 6rem;
+
+    .heading-primary {
+      display: flex;
+      gap: 2.5rem;
+
+      &--main {
+        font-family: inherit;
+        font-style: normal;
+        font-weight: 300;
+        font-size: 4rem;
+        line-height: 4.9rem;
+        text-align: center;
+        letter-spacing: 1px;
+        text-transform: uppercase;
+        color: #ffffff;
+      }
+
+      &--rating {
+        width: 6rem;
+        height: 6rem;
+        border-radius: 50%;
+        border: 1px solid white;
+
+        position: relative;
+
+        & > span {
+          position: absolute;
+          top: 50%;
+          left: 50%;
+          transform: translate(-50%, -50%);
+        }
+      }
+    }
+
+    &__right {
+      display: flex;
+      flex-direction: column;
+      gap: 3rem;
+    }
+
+    &__genre {
+      font-family: inherit;
+      font-style: normal;
+      font-weight: 500;
+      font-size: 1.4rem;
+      line-height: 1.7rem;
+      color: #ffffff;
+
+      mix-blend-mode: normal;
+      opacity: 0.5;
+    }
+
+    &__released-time {
+      display: flex;
+      gap: 5rem;
+    }
+
+    &__released-year,
+    &__runtime {
+      font-family: inherit;
+      font-style: normal;
+      font-weight: 300;
+      font-size: 2.4rem;
+      line-height: 2.9rem;
+
+      color: #f65261;
+    }
+
+    &__overview {
+      font-family: inherit;
+      font-style: normal;
+      font-weight: 300;
+      font-size: 2rem;
+      line-height: 2.4rem;
+      color: #ffffff;
+      mix-blend-mode: normal;
+      opacity: 0.5;
+    }
+  }
+}
+
+.footer {
+  background: var(--color-grey-dark-2);
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  &__logo--main,
+  &__logo--sub {
+    font-family: inherit;
+    font-style: normal;
+    font-weight: 900;
+    font-size: 2rem;
+    line-height: 2.4rem;
+
+    color: var(--color-primary);
+  }
+
+  &__logo--sub {
+    font-weight: 400;
+  }
+}
+
+.search-results__wrapper {
+  background: var(--color-grey-dark-1);
+}
+
+.search-results {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+
+  margin: 2rem 6rem;
+}
+
+.movies {
+  grid-column: 1 / span 2;
+
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  column-gap: 5.5rem;
+  row-gap: 5rem;
+}

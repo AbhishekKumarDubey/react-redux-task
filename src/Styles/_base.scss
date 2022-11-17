@@ -1,0 +1,37 @@
+:root {
+  // COLOR VARIABLES
+  --color-primary: #f65261;
+  --color-grey-dark-1: #232323;
+  --color-grey-dark-2: #424242;
+  --color-grey-dark-3: #555555;
+  --color-white: #ffffff;
+
+  // FONT VARIABLES
+  --font-primary: 'Montserrat', sans-serif;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: inherit;
+}
+
+html {
+  box-sizing: border-box;
+  font-size: 62.5%;
+}
+
+body {
+  font-family: var(--font-primary);
+  font-weight: 400;
+  line-height: 1.6;
+  color: var(--color-white);
+  background-color: var(--color-grey-dark-3);
+
+  min-height: 100vh;
+}
