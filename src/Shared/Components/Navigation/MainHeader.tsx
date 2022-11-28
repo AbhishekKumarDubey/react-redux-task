@@ -1,6 +1,8 @@
-import React, { useState, useContext } from 'react';
+import React, { useState } from 'react';
 
-import MoviesContext from '../../Context/moviesContext';
+import { useAppDispatch, useAppSelector } from '../../hooks/redux-hook';
+import { RootState } from '../../../store';
+import { searchMovies } from '../../../Actions/moviesActions';
 import { useForm } from '../../hooks/form-hook';
 import AddMovie from '../../../Pages/AddMovie';
 
@@ -9,7 +11,9 @@ import Button from '../FormElements/Button';
 import Modal from '../UIElements/Modal';
 
 export default function MainHeader() {
-  const { selectedMovie } = useContext(MoviesContext);
+  const selectedMovie = useAppSelector(
+    (state: RootState) => state.selectedMovie
+  );
   const { inputHandler } = useForm(
     {
       searchInput: {
@@ -20,21 +24,36 @@ export default function MainHeader() {
     true
   );
 
+  const dispatch = useAppDispatch();
+
   const [showAddFormModal, setShowAddFormModal] = useState(false);
+  const [showAddConfirmationModal, setShowAddConfirmationModal] =
+    useState(false);
 
   const closeAddFormHandler = () => setShowAddFormModal(false);
+
+  const onAddMovieSubmitClickHandler = () => {
+    setShowAddFormModal(false);
+    setShowAddConfirmationModal(!showAddConfirmationModal);
+  };
 
   const onSubmitHandler = (e: React.SyntheticEvent) => {
     e.preventDefault();
     const target = e.target as typeof e.target & {
       searchInput: { value: string };
     };
-    console.log(target.searchInput.value);
+    dispatch(searchMovies(target.searchInput.value));
+    target.searchInput.value = '';
   };
 
   const onAddMovieClickHandler = (_: React.MouseEvent<HTMLButtonElement>) => {
-    console.log('showAddFormModal', showAddFormModal);
     setShowAddFormModal(true);
+  };
+
+  const openCloseAddConfirmationModalHandler = (
+    _: React.MouseEvent<HTMLButtonElement>
+  ) => {
+    setShowAddConfirmationModal(!showAddConfirmationModal);
   };
 
   if (selectedMovie) return null;
@@ -46,8 +65,21 @@ export default function MainHeader() {
         onCancel={closeAddFormHandler}
         header='Add Movie'
         headerClass='add-movie__modal-heading'
+        modalClass='modal--large'
       >
-        <AddMovie />
+        <AddMovie onSubmitClick={onAddMovieSubmitClickHandler} />
+      </Modal>
+
+      <Modal
+        show={showAddConfirmationModal}
+        onCancel={openCloseAddConfirmationModalHandler}
+        header='CONGRATULATIONS!'
+        headerClass='add-confirmation__modal-heading'
+        modalClass='modal--small'
+      >
+        <p className='add-confirmation__text add-confirmation__text--center'>
+          The movie has been added to database successfully
+        </p>
       </Modal>
 
       <header className='header'>

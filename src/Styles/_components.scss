@@ -172,6 +172,7 @@
     letter-spacing: 0.888889px;
     text-transform: uppercase;
     color: var(--color-white);
+    cursor: pointer;
 
     &::after {
       content: '';
@@ -414,7 +415,6 @@
   top: 96%;
   left: 45%;
   transform: translate(-50%, -50%);
-  width: 70%;
   background-color: rgba(35, 35, 35, 0.918051);
   border-radius: 9px;
 
@@ -440,6 +440,32 @@
     color: #ffffff;
   }
 
+  .add-confirmation__modal-heading {
+    font-family: inherit;
+    font-style: normal;
+    font-weight: 300;
+    font-size: 4rem;
+    line-height: 5rem;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    text-align: center;
+
+    color: #ffffff;
+
+    &::before {
+      content: '\2713';
+      position: absolute;
+      left: 50%;
+      top: 5px;
+      width: 4.5rem;
+      height: 4.5rem;
+      text-align: center;
+      background: #f65261;
+      border-radius: 50%;
+      border: 1px solid #f65261;
+    }
+  }
+
   p {
     font-family: inherit;
     font-style: normal;
@@ -450,6 +476,18 @@
 
     color: #ffffff;
     text-align: start;
+  }
+
+  .add-confirmation__text--center {
+    text-align: center;
+  }
+
+  &.modal--large {
+    width: 70%;
+  }
+
+  &.modal--small {
+    width: 40%;
   }
 }
 
@@ -482,6 +520,76 @@
       color: var(--color-white);
       opacity: 0.3;
     }
+
+    &--select-backdrop {
+      position: absolute;
+      background: rgba(35, 35, 35, 0.918051);
+      box-shadow: 0px 0px 2px rgba(0, 0, 0, 0.1),
+        0px 2px 10px rgba(0, 0, 0, 0.1), 0px 10px 20px rgba(0, 0, 0, 0.1),
+        0px 10px 50px rgba(0, 0, 0, 0.1);
+      backdrop-filter: blur(13.5914px);
+
+      border-radius: 4px;
+      width: 99%;
+      z-index: 100;
+
+      padding: 1.2rem 1.8rem;
+
+      display: grid;
+      gap: 1.8rem;
+
+      .add-movie__checkbox-input {
+        accent-color: #f65261;
+      }
+
+      .add-movie__checkbox-label {
+        font-family: inherit;
+        font-style: normal;
+        font-weight: 400;
+        font-size: 2rem;
+        line-height: 2.4rem;
+
+        color: #ffffff;
+
+        mix-blend-mode: normal;
+        opacity: 0.8;
+      }
+    }
+  }
+
+  &__checkbox-group {
+    display: flex;
+    gap: 7px;
+  }
+
+  .form-control__select {
+    position: relative;
+
+    .form-control__arrow-filled-up::after {
+      content: '\25B2';
+      position: absolute;
+      right: 3%;
+      top: 60%;
+      text-align: center;
+      color: #f65261;
+      border-radius: 1px;
+      cursor: pointer;
+      z-index: 100;
+      //transform: matrix(1, 0, 0, -1, 0, 0);
+    }
+
+    .form-control__arrow-filled-down::after {
+      content: '\25BC';
+      position: absolute;
+      right: 3%;
+      top: 60%;
+      text-align: center;
+      color: #f65261;
+      border-radius: 1px;
+      cursor: pointer;
+      z-index: 100;
+      //transform: matrix(1, 0, 0, -1, 0, 0);
+    }
   }
 
   .form-control__cta {
@@ -500,4 +608,11 @@
 .form-control__cta--align-right {
   display: flex;
   justify-content: flex-end;
+}
+
+.link {
+  color: white;
+  background: none;
+  border: none;
+  cursor: pointer;
 }

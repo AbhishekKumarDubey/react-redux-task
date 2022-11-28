@@ -1,13 +1,19 @@
-import { useContext } from 'react';
-
-import MoviesContext from '../Shared/Context/moviesContext';
+import { useAppDispatch, useAppSelector } from '../Shared/hooks/redux-hook';
+import { RootState } from '../store';
+import { clearMovie } from '../Actions/moviesActions';
 
 export default function MovieDetails() {
-  const { selectedMovie, clearMovie } = useContext(MoviesContext);
+  const dispatch = useAppDispatch();
 
-  const clearMovieHandler = () => clearMovie();
+  const selectedMovie = useAppSelector(
+    (state: RootState) => state.selectedMovie
+  );
+
+  const clearMovieHandler = () => dispatch(clearMovie());
 
   if (!selectedMovie) return null;
+
+  console.log('selectedMovie', selectedMovie);
 
   return (
     <header className='movie-details__header'>
@@ -42,7 +48,9 @@ export default function MovieDetails() {
               <span>{selectedMovie.vote_average}</span>
             </div>
           </h1>
-          <p className='movie-details__genre'>{selectedMovie.genres}</p>
+          <p className='movie-details__genre'>
+            {selectedMovie.genres.join(', ')}
+          </p>
           <div className='movie-details__released-time'>
             <span className='movie-details__released-year'>
               {selectedMovie.release_date}

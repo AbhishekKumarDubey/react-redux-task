@@ -1,10 +1,10 @@
-import React, { useState, useContext } from 'react';
+import React, { useState } from 'react';
+import { useDispatch } from 'react-redux'; // To-do use redux-hook dispatch
 
-import MoviesContext from '../Shared/Context/moviesContext';
 import EditMovie from '../Pages/EditMovie';
-
 import Button from '../Shared/Components/FormElements/Button';
 import Modal from '../Shared/Components/UIElements/Modal';
+import { setMovie, deleteMovie } from '../Actions/moviesActions';
 
 export interface MovieItem {
   id: number;
@@ -27,38 +27,35 @@ export default function MovieCard({
   overview,
   rating
 }: MovieItem) {
-  const { setMovie, deleteMovie } = useContext(MoviesContext);
-
   const [showCTAs, setShowCTAs] = useState(false);
 
   const [showDeleteModal, setShowDeleteModal] = useState(false);
 
   const [showEditFormModal, setShowEditFormModal] = useState(false);
 
+  const dispatch = useDispatch();
+
   const showHideUpdateCTAHandler: React.MouseEventHandler<
     HTMLDivElement | HTMLButtonElement
   > = _ => {
-    console.log('CLICKED');
     setShowCTAs(!showCTAs);
   };
 
   const openCloseDeleteModalHandler = () => {
-    console.log('openCloseDeleteModalHandler', showDeleteModal);
     setShowDeleteModal(!showDeleteModal);
   };
 
   const openCloseEditModalHandler = () => {
-    console.log('openCloseEditModalHandler', showEditFormModal);
     setShowEditFormModal(!showEditFormModal);
   };
 
   const confirmDeleteHandler = () => {
     console.log('DELETING Movie....');
-    deleteMovie(id);
+    dispatch(deleteMovie(id));
     setShowDeleteModal(!showDeleteModal);
   };
 
-  const setMovieHandler = () => setMovie(id);
+  const setMovieHandler = () => dispatch(setMovie(id));
 
   return (
     <>
@@ -67,6 +64,7 @@ export default function MovieCard({
         onCancel={openCloseEditModalHandler}
         header='Edit Movie'
         headerClass='add-movie__modal-heading'
+        modalClass='modal--large'
       >
         <EditMovie
           title={title}
@@ -85,6 +83,7 @@ export default function MovieCard({
         onCancel={openCloseDeleteModalHandler}
         header='Delete Movie'
         headerClass='add-movie__modal-heading'
+        modalClass='modal--large'
       >
         <p>Are you sure you want to delete this movie?</p>
         <div className='form-control__cta form-control__cta--align-right'>

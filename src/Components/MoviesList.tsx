@@ -32,8 +32,8 @@ export default function MoviesList({ movies = [] }: MoviesCollectionProps) {
             releaseDate={movie.release_date}
             movieUrl={movie.poster_path}
             overview={movie.overview}
-            rating={movie.vote_average.toString()}
-            runtime={movie.runtime.toString()}
+            rating={movie?.vote_average?.toString() || '0'}
+            runtime={movie?.runtime?.toString() || '150'}
           />
         );
       })}

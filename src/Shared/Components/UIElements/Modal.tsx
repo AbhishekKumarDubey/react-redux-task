@@ -10,13 +10,14 @@ type ModalProps = {
   header: string;
   contentClass?: string;
   children: React.ReactNode;
+  modalClass: string;
   // onSubmitHandler: (event: React.SyntheticEvent) => void;
   onCancel: (event: React.MouseEvent<HTMLButtonElement>) => void;
 };
 
 const ModalOverlay = (props: ModalProps) => {
   const content = (
-    <div className='modal'>
+    <div className={`modal ${props.modalClass}`}>
       <header className='modal__header'>
         <h2 className={`${props.headerClass}`}>{props.header}</h2>
         <button className='btn--close-modal' onClick={props.onCancel}>

@@ -1,20 +1,25 @@
-import { useContext } from 'react';
+import { useEffect } from 'react';
 
-import MoviesContext from '../Shared/Context/moviesContext';
+import { useAppDispatch, useAppSelector } from '../Shared/hooks/redux-hook';
+import { RootState } from '../store';
+import { getAllMovies } from '../Actions/moviesActions';
 import MoviesList from '../Components/MoviesList';
 
 export default function Movies() {
-  const { movies } = useContext(MoviesContext);
+  const dispatch = useAppDispatch();
+  const movies = useAppSelector((state: RootState) => state.movies);
+
+  useEffect(() => {
+    dispatch(getAllMovies());
+  }, [dispatch]);
 
   return (
     <section className='movies'>
-      <MoviesList
-        movies={movies.sort(
-          (a, b) =>
-            new Date(a.release_date).getTime() -
-            new Date(b.release_date).getTime()
-        )}
-      />
+      {movies.length ? (
+        <MoviesList movies={movies} />
+      ) : (
+        <h2>There is some issue while loading data.</h2>
+      )}
     </section>
   );
 }
