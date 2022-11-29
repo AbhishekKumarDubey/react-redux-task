@@ -40,6 +40,7 @@ module.exports = {
       {
         endOfLine: 'auto'
       }
-    ]
+    ],
+    indent: 'off'
   }
 };

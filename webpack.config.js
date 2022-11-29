@@ -20,7 +20,7 @@ module.exports = (env, options) => {
     devtool: isDevMode ? 'cheap-module-source-map' : 'source-map',
     entry: path.resolve(__dirname, './src/index.tsx'),
     resolve: {
-      extensions: ['.js', '.jsx', '.tsx']
+      extensions: ['.js', '.jsx', '.ts', '.tsx']
     },
     output: {
       path: settings.distPath,
@@ -65,8 +65,8 @@ module.exports = (env, options) => {
     plugins: [
       new webpack.DefinePlugin({
         'process.env.name': isDevMode
-          ? JSON.stringify('Development')
-          : JSON.stringify('Production')
+          ? JSON.stringify('development')
+          : JSON.stringify('production')
       }),
       new CleanWebpackPlugin({ verbose: true }),
       new HtmlWebpackPlugin({

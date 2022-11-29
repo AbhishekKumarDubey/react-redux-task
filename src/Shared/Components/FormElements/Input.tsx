@@ -13,6 +13,7 @@ interface InputProps {
   formControlClassName?: string;
   errorText?: string;
   rows?: number;
+  readonly?: boolean;
   onInput: (id: string, value: string, isValid: boolean) => void;
 }
 
@@ -81,6 +82,7 @@ export default function Input(props: InputProps) {
         className={props.className}
         onChange={onChangeHandler}
         onBlur={onTouchHandler}
+        readOnly={props.readonly}
       />
     ) : (
       <textarea
